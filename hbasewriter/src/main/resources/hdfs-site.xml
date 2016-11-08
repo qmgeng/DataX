@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+    <property>
+        <name>dfs.nameservices</name>
+        <value>hz-cluster2,hz-cluster3</value>
+    </property>
+
+    <!-- hz-cluster2 -->
+    <property>
+        <name>local.hostname.nn1</name>
+        <value>hadoop40.photo.163.org</value>
+    </property>
+    <property>
+        <name>local.hostname.nn2</name>
+        <value>hadoop41.photo.163.org</value>
+    </property>
+
+    <property>
+        <name>dfs.ha.namenodes.hz-cluster2</name>
+        <value>nn1,nn2</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.rpc-address.hz-cluster2.nn1</name>
+        <value>${local.hostname.nn1}:8020</value>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-address.hz-cluster2.nn2</name>
+        <value>${local.hostname.nn2}:8020</value>
+    </property>
+
+    <property>
+        <name>dfs.client.failover.proxy.provider.hz-cluster2</name>
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    </property>
+
+    <!-- hz-cluster3 -->
+    <property>
+        <name>local.hostname.hznn1</name>
+        <value>hadoop278.lt.163.org</value>
+    </property>
+    <property>
+        <name>local.hostname.hznn2</name>
+        <value>hadoop279.lt.163.org</value>
+    </property>
+
+    <property>
+        <name>dfs.ha.namenodes.hz-cluster3</name>
+        <value>hznn1,hznn2</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.rpc-address.hz-cluster3.hznn1</name>
+        <value>${local.hostname.hznn1}:8020</value>
+    </property>
+    <property>
+        <name>dfs.namenode.rpc-address.hz-cluster3.hznn2</name>
+        <value>${local.hostname.hznn2}:8020</value>
+    </property>
+
+    <property>
+        <name>dfs.client.failover.proxy.provider.hz-cluster3</name>
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    </property>
+
+    <!-- Permissions configuration -->
+    <property>
+        <name>dfs.umaskmode</name>
+        <value>027</value>
+        <description>
+            The octal umask used when creating files and
+            directories.
+        </description>
+    </property>
+
+    <property>
+        <name>dfs.namenode.kerberos.principal</name>
+        <value>hdfs/_HOST@${local.realm}</value>
+        <description>
+            Kerberos principal name for the NameNode
+        </description>
+    </property>
+
+    <property>
+        <name>dfs.block.size</name>
+        <value>268435456</value>
+        <description>The default block size for new files.</description>
+    </property>
+
+</configuration>
+
