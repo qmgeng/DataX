@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>local.realm</name>
+        <value>HADOOP.HZ.NETEASE.COM</value>
+    </property>
+
+    <!-- file system properties -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hz-cluster2</value>
+        <description>The
+            name of the default file system. Either the literal string "local" or a host:port
+            for NDFS.
+        </description>
+        <final>true</final>
+    </property>
+
+    <!-- add LZO,LZ4 compression support -->
+    <property>
+        <name>io.compression.codecs</name>
+        <value>
+            org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec,org.apache.hadoop.io.compress.BZip2Codec,org.apache.hadoop.io.compress.Lz4Codec,org.apache.hadoop.io.compress.SnappyCodec
+        </value>
+    </property>
+
+    <property>
+        <name>io.compression.codec.lzo.class</name>
+        <value>com.hadoop.compression.lzo.LzoCodec</value>
+    </property>
+
+    <property>
+        <name>fs.trash.interval</name>
+        <value>1440</value>
+        <description>Number of minutes between trash checkpoints.
+            If zero, the trash feature is disabled.
+        </description>
+    </property>
+
+    <property>
+        <name>hadoop.security.authentication</name>
+        <value>kerberos</value>
+        <description>
+            Set the authentication for the cluster. Valid values are: simple or
+            kerberos.
+        </description>
+    </property>
+
+    <property>
+        <name>hadoop.security.authorization</name>
+        <value>true</value>
+        <description>
+            Enable authorization for different protocols.
+        </description>
+    </property>
+
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/tmp/hadoop-${user.name}</value>
+    </property>
+
+    <property>
+        <name>io.bytes.per.checksum</name>
+        <value>4096</value>
+    </property>
+
+    <property>
+        <name>fs.inmemory.size.mb</name>
+        <value>200</value>
+    </property>
+
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.weblog.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.weblog.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>fs.hdfs.impl</name>
+        <value>org.apache.hadoop.hdfs.DistributedFileSystem</value>
+        <description>The FileSystem for hdfs: uris.</description>
+    </property>
+</configuration>
+
