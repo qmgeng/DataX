@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class ESWriter extends Writer {
+    private static final Logger LOG = LoggerFactory.getLogger(ESWriter.class);
 
     public static class Job extends Writer.Job {
 
@@ -95,9 +96,9 @@ public class ESWriter extends Writer {
         private void closeBulkProcessor(BulkProcessor bulkProcessor) {
             try {
                 boolean awaitClose = bulkProcessor.awaitClose(10, TimeUnit.MINUTES);//阻塞至所有的请求线程处理完毕后，断开连接资源
-//                LOGGER.info("closeBulkProcessor return " + awaitClose);
+                LOG.info("closeBulkProcessor return " + awaitClose);
             } catch (Exception e) {
-//                LOGGER.error("closeBulkProcessor Exception", e);
+                LOG.error("closeBulkProcessor Exception", e);
             }
         }
 
@@ -176,7 +177,6 @@ public class ESWriter extends Writer {
                                             record.getColumnNumber(),
                                             this.columns.size()));
                 }
-                //
 
                 doBatchInsert(bulkProcessor, record);
             }
@@ -222,7 +222,7 @@ public class ESWriter extends Writer {
             for (String id : this.docid) {
                 sbuffer.append(hm.get(id));
             }
-            
+
             if (hm != null) {
                 bulkProcessor.add(new IndexRequest(this.esIndex, this.esType, sbuffer.toString()).source(hm));
             }
