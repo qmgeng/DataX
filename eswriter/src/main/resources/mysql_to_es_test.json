@@ -30,7 +30,7 @@
         "writer": {
           "name": "eswriter",
           "parameter": {
-            "esClusterName": "es2.datacube",
+            "esClusterName": "es2.test",
             "esClusterIP": [
               "123.58.179.98"
             ],
