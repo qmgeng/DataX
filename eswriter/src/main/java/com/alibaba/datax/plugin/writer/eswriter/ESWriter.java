@@ -209,17 +209,20 @@ public class ESWriter extends Writer {
 
         private void doBatchInsert(BulkProcessor bulkProcessor, Record record) {
             Map<String, Object> hm = null;
-            StringBuffer sbuffer = new StringBuffer();
             int fieldNum = record.getColumnNumber();
             if (null != record && fieldNum > 0) {
                 hm = new HashMap<String, Object>();
                 for (int i = 0; i < fieldNum; i++) {
-                    if (this.docid.contains(this.columns.get(i))) {
-                        sbuffer.append(record.getColumn(i).asString());
-                    }
                     hm.put(this.columns.get(i), record.getColumn(i).asString());
                 }
             }
+
+            //组装docid
+            StringBuffer sbuffer = new StringBuffer();
+            for (String id : this.docid) {
+                sbuffer.append(hm.get(id));
+            }
+            
             if (hm != null) {
                 bulkProcessor.add(new IndexRequest(this.esIndex, this.esType, sbuffer.toString()).source(hm));
             }
