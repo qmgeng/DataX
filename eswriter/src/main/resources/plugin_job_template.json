@@ -1,0 +1,24 @@
+{
+  "name": "eswriter",
+  "parameter": {
+    "esClusterName": "",
+    "esClusterIP": [
+      "192.168.0.1",
+      "192.168.0.2"
+    ],
+    "esClusterPort": "9300",
+    "esIndex": "user",
+    "esType": "student",
+    "column": [
+      "id",
+      "userid",
+      "name",
+      "phone"
+    ],
+    "docid": [
+      "id",
+      "userid"
+    ],
+    "batchSize": "1000"
+  }
+}

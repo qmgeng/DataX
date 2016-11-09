@@ -1,0 +1,10 @@
+{
+  "name": "eswriter",
+  "class": "com.alibaba.datax.plugin.writer.eswriter.ESWriter",
+  "description": {
+    "useScene": "only for developer test.",
+    "mechanism": "use datax framework to transport data to elasticsearch.",
+    "warn": ""
+  },
+  "developer": "qmgeng"
+}
