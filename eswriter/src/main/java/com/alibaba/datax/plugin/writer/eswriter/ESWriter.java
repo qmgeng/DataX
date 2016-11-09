@@ -90,6 +90,7 @@ public class ESWriter extends Writer {
         private List<String> docid = null;
         private TransportClient client = null;
         private Integer batchSize = null;
+        private Integer bytesize = null;
 
         private void closeBulkProcessor(BulkProcessor bulkProcessor) {
             try {
@@ -111,6 +112,7 @@ public class ESWriter extends Writer {
             this.columns = writerSliceConfiguration.getList(Key.COLUMN, String.class);
             this.docid = writerSliceConfiguration.getList(Key.DOCID, String.class);
             this.batchSize = writerSliceConfiguration.getInt(Key.batchSize, 1000);
+            this.bytesize = writerSliceConfiguration.getInt(Key.bytesize, 100);
         }
 
         @Override
@@ -198,9 +200,9 @@ public class ESWriter extends Writer {
 //                    LOGGER.info("id: " + id + "  afterBulk ");//发送请求成功后，可以做一些事情
                 }
             }).setBulkActions(this.batchSize)//达到批量请求处理一次
-                    .setBulkSize(new ByteSizeValue(100, ByteSizeUnit.MB))//flush the bulk every 100mb。默认为5m
+                    .setBulkSize(new ByteSizeValue(this.bytesize, ByteSizeUnit.MB))//flush the bulk every 100mb。默认为100m
                     .setFlushInterval(TimeValue.timeValueSeconds(5))//每5秒一定执行，不管已经队列积累了多少。默认不设置这个值
-                    .setConcurrentRequests(17)//设置多少个并发处理线程
+                    .setConcurrentRequests(10)//设置多少个并发处理线程
                     .build();//构建BulkProcessor
             return bulkProcessor;
         }

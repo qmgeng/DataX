@@ -50,4 +50,10 @@ public final class Key {
      */
     public final static String batchSize = "batchSize";
 
+    /*
+     * @name: bytesize
+     * @description: commit to elasticsearch bytesize
+     */
+    public final static String bytesize = "bytesize";
+
 }

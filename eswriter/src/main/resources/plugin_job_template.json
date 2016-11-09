@@ -19,6 +19,7 @@
       "id",
       "userid"
     ],
-    "batchSize": "1000"
+    "batchSize": "1000",
+    "bytesize": 100
   }
 }
