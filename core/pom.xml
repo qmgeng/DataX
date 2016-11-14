@@ -97,6 +97,12 @@
             <artifactId>groovy-all</artifactId>
             <version>2.1.9</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0-rc2</version>
+        </dependency>
     </dependencies>
 
     <build>
