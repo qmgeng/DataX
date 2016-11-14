@@ -605,7 +605,7 @@ public class JobContainer extends AbstractContainer {
         super.getContainerCommunicator().report(reportCommunication);
 
 
-        LOG.info(String.format(
+        String alarminfo = String.format(
                 "\n" + "%-26s: %-18s\n" + "%-26s: %-18s\n" + "%-26s: %19s\n"
                         + "%-26s: %19s\n" + "%-26s: %19s\n" + "%-26s: %19s\n"
                         + "%-26s: %19s\n",
@@ -626,30 +626,9 @@ public class JobContainer extends AbstractContainer {
                 String.valueOf(CommunicationTool.getTotalReadRecords(communication)),
                 "读写失败总数",
                 String.valueOf(CommunicationTool.getTotalErrorRecords(communication))
-        ));
-
-        AlarmUtil.sendAlarmToDefaultUser(this.jobId + "---" + String.format(
-                "\n" + "%-26s: %-18s\n" + "%-26s: %-18s\n" + "%-26s: %19s\n"
-                        + "%-26s: %19s\n" + "%-26s: %19s\n" + "%-26s: %19s\n"
-                        + "%-26s: %19s\n",
-                "任务启动时刻",
-                dateFormat.format(startTimeStamp),
-
-                "任务结束时刻",
-                dateFormat.format(endTimeStamp),
-
-                "任务总计耗时",
-                String.valueOf(totalCosts) + "s",
-                "任务平均流量",
-                StrUtil.stringify(byteSpeedPerSecond)
-                        + "/s",
-                "记录写入速度",
-                String.valueOf(recordSpeedPerSecond)
-                        + "rec/s", "读出记录总数",
-                String.valueOf(CommunicationTool.getTotalReadRecords(communication)),
-                "读写失败总数",
-                String.valueOf(CommunicationTool.getTotalErrorRecords(communication))
-        ));
+        );
+        LOG.info(alarminfo);
+        AlarmUtil.sendAlarmToDefaultUser(this.jobId + "---" + alarminfo);
 
         if (communication.getLongCounter(CommunicationTool.TRANSFORMER_SUCCEED_RECORDS) > 0
                 || communication.getLongCounter(CommunicationTool.TRANSFORMER_FAILED_RECORDS) > 0

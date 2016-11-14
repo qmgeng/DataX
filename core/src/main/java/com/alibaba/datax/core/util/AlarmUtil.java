@@ -5,7 +5,6 @@ import com.google.common.io.Files;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.List;
 
@@ -47,10 +46,9 @@ public class AlarmUtil {
     }
 
     public static void sendAlarmToDefaultUser(String msg) {
-        URL url = POPOAlarm.class.getClassLoader().getResource("/home/weblog/datax/conf/alarmlist.properties");
         List<String> alarmList = Lists.newArrayList();
         try {
-            alarmList = Files.readLines(new File(url.getPath()), Charset.defaultCharset());
+            alarmList = Files.readLines(new File("/home/weblog/datax/conf/alarmlist.properties"), Charset.defaultCharset());
             for (String alarm : alarmList) {
                 sendPOPOAlarm(alarm.split("#")[0], msg);
                 sendSMSAlarm(alarm.split("#")[1], msg);
