@@ -628,7 +628,7 @@ public class JobContainer extends AbstractContainer {
                 String.valueOf(CommunicationTool.getTotalErrorRecords(communication))
         );
         LOG.info(alarminfo);
-        AlarmUtil.sendAlarmToDefaultUser(this.jobId + "读写失败总数");
+        AlarmUtil.sendAlarmToDefaultUser("读写失败总数");
 
         if (communication.getLongCounter(CommunicationTool.TRANSFORMER_SUCCEED_RECORDS) > 0
                 || communication.getLongCounter(CommunicationTool.TRANSFORMER_FAILED_RECORDS) > 0
