@@ -50,8 +50,8 @@ public class AlarmUtil {
         try {
             alarmList = Files.readLines(new File("/home/weblog/datax/conf/alarmlist.properties"), Charset.defaultCharset());
             for (String alarm : alarmList) {
-                sendPOPOAlarm(alarm.split("#")[0], msg);
-                sendSMSAlarm(alarm.split("#")[1], msg);
+                sendPOPOAlarm(msg, alarm.split("#")[0]);
+                sendSMSAlarm(msg, alarm.split("#")[1]);
             }
         } catch (IOException e) {
             System.out.println("exception");
