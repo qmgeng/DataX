@@ -4,9 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Properties;
@@ -66,7 +64,8 @@ public class AlarmUtil {
         Properties prop = new Properties();
         String jobinfo = "";
         try {
-            prop.load(new FileInputStream("/home/weblog/datax/conf/jobinfo.properties"));
+            Reader inStream = new InputStreamReader(new FileInputStream("/home/weblog/datax/conf/jobinfo.properties"), "UTF-8");
+            prop.load(inStream);
             jobinfo = prop.getProperty(jobid);
             if (StringUtils.isBlank(jobinfo)) {
                 return jobid;
