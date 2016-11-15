@@ -8,7 +8,7 @@ public class SMSAlarm {
             "http://smsknl.163.com:8089/servlet/CorpIdentifyNotCheck?phone=%s&message=%s&frmphone=%s&msgprop=61033&corpinfo=1";
 
     /**
-     * 通过中转机发送短信
+     * 通过中转机发送短信-放弃代理
      *
      * @param mobile 电话号码
      * @param sms    短信内容

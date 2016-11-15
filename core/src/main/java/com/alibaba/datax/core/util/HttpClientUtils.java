@@ -178,11 +178,29 @@ public final class HttpClientUtils {
      * @param url url
      * @return result content
      */
-    public static String get(String url) {
+    public static String proxyGet(String url) {
         try {
             HttpGet httpGet = new HttpGet(url);
             // 修改成使用带代理的
             HttpResponse response = getHttpClientProxy().execute(httpGet);
+            return responseToString(response);
+        } catch (Exception e) {
+            logger.error("Send Get request to url faild, url: " + url, e);
+        }
+        return null;
+    }
+
+    /**
+     * Send get to URL.
+     *
+     * @param url url
+     * @return result content
+     */
+    public static String get(String url) {
+        try {
+            HttpGet httpGet = new HttpGet(url);
+            // 修改成使用带代理的
+            HttpResponse response = getHttpClient().execute(httpGet);
             return responseToString(response);
         } catch (Exception e) {
             logger.error("Send Get request to url faild, url: " + url, e);
