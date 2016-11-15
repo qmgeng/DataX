@@ -606,7 +606,7 @@ public class JobContainer extends AbstractContainer {
 
 
         long errorRecords = CommunicationTool.getTotalErrorRecords(communication);
-        String alarminfo = String.format("\n" + "%-26s: %-18s\n" +
+        String alarminfo = String.format("\n" + "%-26s: %-19s\n" +
                         "%-26s: %-18s\n" + "%-26s: %-18s\n" + "%-26s: %19s\n"
                         + "%-26s: %19s\n" + "%-26s: %19s\n" + "%-26s: %19s\n"
                         + "%-26s: %19s\n",
