@@ -2,11 +2,14 @@ package com.alibaba.datax.core.util;
 
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * 报警用的类
@@ -57,5 +60,21 @@ public class AlarmUtil {
             System.out.println("exception");
             e.printStackTrace();
         }
+    }
+
+    public static String getJobInfoById(String jobid) {
+        Properties prop = new Properties();
+        String jobinfo = "";
+        try {
+            prop.load(new FileInputStream("/home/weblog/datax/conf/jobinfo.properties"));
+            jobinfo = prop.getProperty(jobid);
+            if (StringUtils.isBlank(jobinfo)) {
+                return jobid;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jobinfo;
     }
 }
