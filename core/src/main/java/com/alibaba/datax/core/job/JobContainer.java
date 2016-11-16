@@ -606,10 +606,10 @@ public class JobContainer extends AbstractContainer {
 
 
         long errorRecords = CommunicationTool.getTotalErrorRecords(communication);
-        String alarminfo = String.format("\n" + "%-26s: %-19s\n" +
-                        "%-26s: %-18s\n" + "%-26s: %-18s\n" + "%-26s: %19s\n"
-                        + "%-26s: %19s\n" + "%-26s: %19s\n" + "%-26s: %19s\n"
-                        + "%-26s: %19s\n",
+        String alarminfo = String.format("\n" + "%s: %s\n" +
+                        "%s: %s\n" + "%s: %s\n" + "%s: %s\n"
+                        + "%s: %s\n" + "%s: %s\n" + "%s: %s\n"
+                        + "%s: %s\n",
                 "当前任务信息",
                 AlarmUtil.getJobInfoById(String.valueOf(this.jobId)),
 
@@ -634,7 +634,7 @@ public class JobContainer extends AbstractContainer {
         LOG.info(alarminfo);
 
 //        if (errorRecords != 0) {
-            AlarmUtil.sendAlarmToDefaultUser(alarminfo);
+        AlarmUtil.sendAlarm(alarminfo);
 //        }
 
         if (communication.getLongCounter(CommunicationTool.TRANSFORMER_SUCCEED_RECORDS) > 0
