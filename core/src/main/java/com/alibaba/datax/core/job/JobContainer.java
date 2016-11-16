@@ -633,9 +633,9 @@ public class JobContainer extends AbstractContainer {
         );
         LOG.info(alarminfo);
 
-//        if (errorRecords != 0) {
-        AlarmUtil.sendAlarm(alarminfo);
-//        }
+        if (errorRecords != 0) {
+            AlarmUtil.sendAlarm(alarminfo);
+        }
 
         if (communication.getLongCounter(CommunicationTool.TRANSFORMER_SUCCEED_RECORDS) > 0
                 || communication.getLongCounter(CommunicationTool.TRANSFORMER_FAILED_RECORDS) > 0
