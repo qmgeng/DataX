@@ -335,7 +335,8 @@ public class UnstructuredStorageReaderUtil {
 		Character fieldDelimiter = configuration.getChar(Key.FIELD_DELIMITER,
 				Constant.DEFAULT_FIELD_DELIMITER);
 
-		String[] sourceLine = StringUtils.split(line, fieldDelimiter);
+		//String[] sourceLine = StringUtils.split(line, fieldDelimiter);
+        String[] sourceLine = line.split(Character.toString(fieldDelimiter));
 
 		return transportOneRecord(recordSender, column, sourceLine, nullFormat, taskPluginCollector);
 	}
