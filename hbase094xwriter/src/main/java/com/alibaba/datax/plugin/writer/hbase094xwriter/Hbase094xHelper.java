@@ -71,8 +71,8 @@ public class Hbase094xHelper {
     public static HTable getTable(com.alibaba.datax.common.util.Configuration configuration){
         String hbaseConfig = configuration.getString(Key.HBASE_CONFIG);
         String userTable = configuration.getString(Key.TABLE);
-//        org.apache.hadoop.conf.Configuration hConfiguration = Hbase094xHelper.getHbaseConfiguration(hbaseConfig);
-        org.apache.hadoop.conf.Configuration hConfiguration = HBaseConfiguration.create();
+        org.apache.hadoop.conf.Configuration hConfiguration = Hbase094xHelper.getHbaseConfiguration(hbaseConfig);
+        //org.apache.hadoop.conf.Configuration hConfiguration = HBaseConfiguration.create();
         Boolean autoFlush = configuration.getBool(Key.AUTO_FLUSH, false);
         long writeBufferSize = configuration.getLong(Key.WRITE_BUFFER_SIZE, Constant.DEFAULT_WRITE_BUFFER_SIZE);
 
