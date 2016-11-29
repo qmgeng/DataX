@@ -6,6 +6,8 @@ public final class Key {
 
     public final static String TABLE = "table";
 
+    public final static String ENV = "env";
+
     /**
      * mode 可以取 normal 或者 multiVersionFixedColumn 或者 multiVersionDynamicColumn 三个值，无默认值。
      * <p/>

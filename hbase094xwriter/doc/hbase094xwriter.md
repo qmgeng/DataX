@@ -327,6 +327,13 @@ HbaseWriter 插件实现了从向Hbase中写取数据。在底层实现上，Hba
 	* 必选：否<br />
  
 	* 默认值：8M<br />
+	
+* **env**
+
+	* 描述：配置测试（test）or线上环境（online）<br />
+	  
+	* 必选：是<br />
+ 
 
 ### 3.3 HBase支持的列类型
 * BOOLEAN
