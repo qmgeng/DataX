@@ -185,7 +185,8 @@ public class Hbase094xHelper {
 
 
     public static void validateParameter(com.alibaba.datax.common.util.Configuration originalConfig) {
-        originalConfig.getNecessaryValue(Key.HBASE_CONFIG, Hbase094xWriterErrorCode.REQUIRED_VALUE);
+        //originalConfig.getNecessaryValue(Key.HBASE_CONFIG, Hbase094xWriterErrorCode.REQUIRED_VALUE);
+        originalConfig.getNecessaryValue(Key.ENV, Hbase094xWriterErrorCode.REQUIRED_VALUE);
         originalConfig.getNecessaryValue(Key.TABLE, Hbase094xWriterErrorCode.REQUIRED_VALUE);
 
         Hbase094xHelper.validateMode(originalConfig);
