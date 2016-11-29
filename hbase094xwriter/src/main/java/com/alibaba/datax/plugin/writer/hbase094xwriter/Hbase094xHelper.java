@@ -11,6 +11,7 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.hadoop.security.UserGroupInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,13 +55,28 @@ public class Hbase094xHelper {
     public static HTable getTable(com.alibaba.datax.common.util.Configuration configuration){
         String hbaseConfig = configuration.getString(Key.HBASE_CONFIG);
         String userTable = configuration.getString(Key.TABLE);
-        org.apache.hadoop.conf.Configuration hConfiguration = Hbase094xHelper.getHbaseConfiguration(hbaseConfig);
+//        org.apache.hadoop.conf.Configuration hConfiguration = Hbase094xHelper.getHbaseConfiguration(hbaseConfig);
+        org.apache.hadoop.conf.Configuration hConfiguration = null;
         Boolean autoFlush = configuration.getBool(Key.AUTO_FLUSH, false);
         long writeBufferSize = configuration.getLong(Key.WRITE_BUFFER_SIZE, Constant.DEFAULT_WRITE_BUFFER_SIZE);
 
         HTable htable = null;
         HBaseAdmin admin = null;
         try {
+            System.setProperty("java.security.krb5.conf", "/etc/krb5.conf");
+            // 会自动加载hbase-site.xml
+            hConfiguration = HBaseConfiguration.create();
+            hConfiguration.addResource("hbase-site.xml");
+            // 使用keytab登陆
+            UserGroupInformation.setConfiguration(hConfiguration);
+
+            try {
+//            UserGroupInformation.loginUserFromKeytab("weblog/dev@HADOOP.HZ.NETEASE.COM", "/home/weblog/weblog.keytab");
+                UserGroupInformation.getLoginUser();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             htable = new HTable(hConfiguration, userTable);
             admin = new HBaseAdmin(hConfiguration);
             Hbase094xHelper.checkHbaseTable(admin,htable);
